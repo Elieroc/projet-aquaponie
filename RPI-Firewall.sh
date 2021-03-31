@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Ce script a pour but de configurer automatiquement
 # le pare-feu.
@@ -15,11 +15,13 @@
 # Retrouvez mes autres projets :
 # https://github.com/Elieroc/
 
-function install {
+function installation {
+
   echo "Installation..."
   cp RPI-Firewall.sh /etc/init.d/RPI-Firewall
   chmod +x /etc/init.d/RPI-Firewall
   update-rc.d RPI-Firewall defaults
+
 }
 
 function init {
@@ -83,11 +85,12 @@ iptables -A OUTPUT -p icmp -m conntrack --ctstate NEW,ESTABLISHED,RELATED -j ACC
 
 # Si aucun paramètre n'est indiqué, on démarre le pare-feu
 if [[ $1 == "on" || $1 == "start" || -z $1 ]]; then
+  init
   main
-elif [[ $1 == "off" || $1 == "stop"]]; then
+fi
+if [ $1 == "off" ]; then
+  init
   stop
-elif [$1 == "install"]; then
-  install
-else
-  echo "Merci d'indiquer un argument valide (on/off) !"
+elif [ $1 == "install" ]; then
+  installation
 fi
