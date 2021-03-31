@@ -16,6 +16,7 @@
 # https://github.com/Elieroc/
 
 function install {
+  echo "Installation..."
   cp RPI-Firewall.sh /etc/init.d/RPI-Firewall
   chmod +x /etc/init.d/RPI-Firewall
   update-rc.d RPI-Firewall defaults
@@ -85,6 +86,8 @@ if [[ $1 == "on" || $1 == "start" || -z $1 ]]; then
   main
 elif [[ $1 == "off" || $1 == "stop"]]; then
   stop
+elif [$1 == "install"]; then
+  install
 else
   echo "Merci d'indiquer un argument valide (on/off) !"
 fi
