@@ -36,7 +36,7 @@ echo "Attention : Ce script va redémarrer votre Raspberry Pi à la fin de son e
 
 }
 
-# Ici on vérifie si tous les arguments sont présents ou si
+# Ici on vérifie si des arguments sont absents ou si
 # l'utilisateur demande de l'aide
 if [[ $1 == "--help" || -z $1  || -z $2 || -z $3 ]];
 then
